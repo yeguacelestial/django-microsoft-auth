@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3@h&hayio#pv9g09!zf@9_!i=^u#3pm9wj#d2n)18+quemt!!('
+SECRET_KEY = '!pwd)a#kco$b&_kic9(j5i#eo!6*&5mzkayv(e4*oxwcyyjo_!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,8 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Local
-    'tutorial',
+    # Added
+    'django.contrib.sites',
+
+    # 3rd party
+    'rest_framework',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.microsoft',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +128,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# DRF
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+# Custom
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'microsoft': {
+        'tenant': 'uanl.edu.mx',
+    }
+}
+
+if 'HEROKU' in os.environ:
+    import django_heroku
+    django_heroku.settings(locals())
