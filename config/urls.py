@@ -34,4 +34,8 @@ urlpatterns = [
 
     # Django allauth
     path('accounts/', include('allauth.urls')),
+
+    # Dj rest auth
+    path('dj_rest_auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/microsoft/', views.MicrosoftLogin.as_view(), name='ms_login'),
 ]
