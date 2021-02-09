@@ -147,6 +147,8 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 if 'HEROKU' in os.environ:
     import django_heroku
     django_heroku.settings(locals())
